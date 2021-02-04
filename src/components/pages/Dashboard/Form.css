@@ -1,0 +1,22 @@
+@media all and (min-width: 480px) {
+  .Diary {
+    padding: 60px 0;
+  }
+
+  .Diary form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+  .Todolist {
+    padding: 60px 0;
+  }
+
+  .Todolist form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+
+  .Mood {
+    padding: 60px 0;
+  }
+}
