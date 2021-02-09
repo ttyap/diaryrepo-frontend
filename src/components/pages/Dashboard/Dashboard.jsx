@@ -1,12 +1,46 @@
 import React from "react";
 import Diary from "./Diary";
 import Mood from "./Mood";
+import axios from "axios";
+import {withCookies} from "react-cookie";
+
 import Todolist from "./Todolist";
 import Quotes from "./Quotes";
 import * as Icon from "react-bootstrap-icons";
-import {Card, Container, Row, Col} from "react-bootstrap";
+import {Card, Container, Row, Col, Button} from "react-bootstrap";
 
 class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: "",
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:5000/api/v1/user/me", {
+        headers: {
+          token: this.props.cookies.get("token"),
+        },
+      })
+
+      .then((response) => {
+        this.setState({
+          user: response.data.user[0],
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  handleLogout(e) {
+    e.preventDefault();
+    this.props.cookies.remove("token", {path: "/"});
+    window.location.href = "/";
+  }
+
   render() {
     return (
       <div className="page-dashboard">
@@ -65,7 +99,7 @@ class Dashboard extends React.Component {
                   </Card.Body>
                 </Card>
               </Col>
-              <Col sm={9}>
+              <Col sm={8}>
                 <Card
                   style={{
                     marginTop: "20px",
@@ -74,7 +108,7 @@ class Dashboard extends React.Component {
                   }}
                 >
                   <Card.Header style={{textAlign: "left", fontWeight: "bold"}}>
-                    Diary{" "}
+                    {this.state.user.username}'s Diary{" "}
                     <a href="/mood">
                       {" "}
                       <Icon.PlusCircle
@@ -84,7 +118,25 @@ class Dashboard extends React.Component {
                   </Card.Header>
                   <Diary />
                 </Card>
-              </Col>
+              </Col>{" "}
+              {/* <Col sm={1}> */}
+              <Button
+                variant="light"
+                onClick={() => {
+                  this.handleLogout();
+                }}
+                href="/"
+                style={{
+                  marginTop: "20px",
+                  height: "8%",
+                  opacity: "95%",
+                }}
+              >
+                <p2 style={{color: "black", fontWeight: "bold", fontSize: "10px"}}>Logout</p2>
+
+                <Icon.Power style={{color: "black", fontWeight: "bold"}}> </Icon.Power>
+              </Button>
+              {/* </Col> */}
             </Row>
           </Container>
         </div>
@@ -93,4 +145,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+export default withCookies(Dashboard);

@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import qs from "qs";
+import * as Icon from "react-bootstrap-icons";
+
 import {Button, Form, Card, Container} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Register.css";
@@ -64,9 +66,10 @@ class Register extends React.Component {
               padding: "50px",
             }}
           >
-            <Card.Header>
-              <h1>Register</h1>
+            <Card.Header style={{fontWeight: "bolder", fontSize: "x-large"}}>
+              Welcome to diaryRepo <Icon.Journal></Icon.Journal>
             </Card.Header>
+            <Card.Title style={{marginTop: "10px"}}>Register</Card.Title>
             <Card.Body>
               <Form
                 onSubmit={(e) => {

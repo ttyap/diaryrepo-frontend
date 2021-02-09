@@ -1,9 +1,11 @@
 import React from "react";
-import {Form, Card, Container, Button, Row, Col} from "react-bootstrap";
+import {Form, Card, Container, Button} from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
 import "./Form.css";
 import axios from "axios";
 import qs from "qs";
+import FormCheckInput from "react-bootstrap/esm/FormCheckInput";
+import {withCookies} from "react-cookie";
 
 class MoodForm extends React.Component {
   constructor(props) {
@@ -20,16 +22,20 @@ class MoodForm extends React.Component {
 
   handleFormSubmission(e) {
     e.preventDefault();
-
+    console.log(this.props.cookies.get("token"));
     axios
       .post(
         `http://localhost:5000/api/v1/mood`,
         qs.stringify({
           mood: this.state.mood,
-        })
+        }),
+        {
+          headers: {
+            token: this.props.cookies.get("token"),
+          },
+        }
       )
       .then((response) => {
-        console.log(response);
         if (!response.data.success) {
           this.setState({
             formErr: "Error occurred in form, please check values",
@@ -68,83 +74,101 @@ class MoodForm extends React.Component {
                   this.handleFormSubmission(e);
                 }}
               >
-                <Form.Group as={Row}>
-                  <Col>
-                    {" "}
-                    <Form.Check
-                      type="radio"
-                      name="mood"
-                      id="mood"
-                      value="1"
-                      onChange={(e) => {
-                        this.handleInputChange(e);
-                      }}
-                    />{" "}
-                    <Form.Check.Label style={{fontSize: "30px"}}>
-                      Angry <Icon.EmojiAngry></Icon.EmojiAngry>{" "}
-                    </Form.Check.Label>
-                    <Form.Check
-                      type="radio"
-                      name="mood"
-                      id="mood"
-                      value="2"
-                      onChange={(e) => {
-                        this.handleInputChange(e);
-                      }}
-                    />
-                    <Form.Check.Label style={{fontSize: "30px"}}>
-                      Not good <Icon.EmojiFrown></Icon.EmojiFrown>{" "}
-                    </Form.Check.Label>
-                    <Form.Check
-                      type="radio"
-                      name="mood"
-                      id="mood"
-                      value="3"
-                      onChange={(e) => {
-                        this.handleInputChange(e);
-                      }}
-                    />
-                    <Form.Check.Label style={{fontSize: "30px"}}>
-                      Meh <Icon.EmojiNeutral></Icon.EmojiNeutral>{" "}
-                    </Form.Check.Label>
-                    <Form.Check
-                      type="radio"
-                      name="mood"
-                      id="mood"
-                      value="4"
-                      onChange={(e) => {
-                        this.handleInputChange(e);
-                      }}
-                    />{" "}
-                    <Form.Check.Label style={{fontSize: "30px"}}>
-                      Good <Icon.EmojiSmile></Icon.EmojiSmile>{" "}
-                    </Form.Check.Label>
-                    <Form.Check
-                      type="radio"
-                      name="mood"
-                      id="mood"
-                      value="5"
-                      onChange={(e) => {
-                        this.handleInputChange(e);
-                      }}
-                    />{" "}
-                    <Form.Check.Label style={{fontSize: "30px"}}>
-                      Having a blast <Icon.EmojiLaughing></Icon.EmojiLaughing>{" "}
-                    </Form.Check.Label>
-                    <Form.Check
-                      type="radio"
-                      name="mood"
-                      id="mood"
-                      value="6"
-                      onChange={(e) => {
-                        this.handleInputChange(e);
-                      }}
-                    />{" "}
-                    <Form.Check.Label style={{fontSize: "30px"}}>
-                      Loved <Icon.EmojiHeartEyes></Icon.EmojiHeartEyes>{" "}
-                    </Form.Check.Label>
-                  </Col>
-                </Form.Group>
+                <Form.Check>
+                  <Form.Check.Input
+                    type="radio"
+                    name="mood"
+                    id="mood"
+                    value="1"
+                    style={{marginTop: "20px"}}
+                    onChange={(e) => {
+                      this.handleInputChange(e);
+                    }}
+                  />
+                  <Form.Check.Label style={{fontSize: "30px", verticalAlign: "middle"}}>
+                    ANGRY <Icon.EmojiAngry></Icon.EmojiAngry>
+                  </Form.Check.Label>{" "}
+                </Form.Check>{" "}
+                <Form.Check>
+                  <FormCheckInput
+                    type="radio"
+                    name="mood"
+                    id="mood"
+                    value="2"
+                    style={{marginTop: "20px"}}
+                    onChange={(e) => {
+                      this.handleInputChange(e);
+                    }}
+                  />
+
+                  <Form.Check.Label style={{fontSize: "30px"}}>
+                    SAD <Icon.EmojiFrown></Icon.EmojiFrown>{" "}
+                  </Form.Check.Label>
+                </Form.Check>
+                <Form.Check>
+                  {" "}
+                  <FormCheckInput
+                    type="radio"
+                    name="mood"
+                    id="mood"
+                    value="3"
+                    style={{marginTop: "20px"}}
+                    onChange={(e) => {
+                      this.handleInputChange(e);
+                    }}
+                  />
+                  <Form.Check.Label style={{fontSize: "30px"}}>
+                    MEH <Icon.EmojiNeutral></Icon.EmojiNeutral>{" "}
+                  </Form.Check.Label>
+                </Form.Check>
+                <Form.Check>
+                  {" "}
+                  <FormCheckInput
+                    type="radio"
+                    name="mood"
+                    id="mood"
+                    value="4"
+                    style={{marginTop: "20px"}}
+                    onChange={(e) => {
+                      this.handleInputChange(e);
+                    }}
+                  />
+                  <Form.Check.Label style={{fontSize: "30px"}}>
+                    GOOD <Icon.EmojiSmile></Icon.EmojiSmile>{" "}
+                  </Form.Check.Label>
+                </Form.Check>
+                <Form.Check>
+                  {" "}
+                  <FormCheckInput
+                    type="radio"
+                    name="mood"
+                    id="mood"
+                    value="5"
+                    style={{marginTop: "20px"}}
+                    onChange={(e) => {
+                      this.handleInputChange(e);
+                    }}
+                  />
+                  <Form.Check.Label style={{fontSize: "30px"}}>
+                    GREAT <Icon.EmojiLaughing></Icon.EmojiLaughing>{" "}
+                  </Form.Check.Label>
+                </Form.Check>
+                <Form.Check>
+                  {" "}
+                  <FormCheckInput
+                    type="radio"
+                    name="mood"
+                    id="mood"
+                    value="6"
+                    style={{marginTop: "20px"}}
+                    onChange={(e) => {
+                      this.handleInputChange(e);
+                    }}
+                  />
+                  <Form.Check.Label style={{fontSize: "30px"}}>
+                    LOVED <Icon.EmojiHeartEyes></Icon.EmojiHeartEyes>{" "}
+                  </Form.Check.Label>
+                </Form.Check>
                 <Button type="submit">Submit</Button>
               </Form>
             </Card.Body>
@@ -155,4 +179,4 @@ class MoodForm extends React.Component {
   }
 }
 
-export default MoodForm;
+export default withCookies(MoodForm);

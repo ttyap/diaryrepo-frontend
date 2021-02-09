@@ -3,6 +3,7 @@ import axios from "axios";
 import jwt from "jsonwebtoken";
 import qs from "qs";
 import moment from "moment";
+import * as Icon from "react-bootstrap-icons";
 import {withCookies} from "react-cookie";
 import {withRouter} from "react-router-dom";
 import {Button, Form, Card} from "react-bootstrap";
@@ -24,7 +25,6 @@ class Login extends React.Component {
       [e.target.name]: e.target.value,
     });
   }
-
   handleFormSubmission(e) {
     e.preventDefault();
 
@@ -39,7 +39,7 @@ class Login extends React.Component {
       .then((response) => {
         if (!response.data.success) {
           this.setState({
-            formErr: "Error occurred in form, please check values",
+            formErr: "Incorrect username or password, please re-enter",
           });
           return;
         }
@@ -53,7 +53,7 @@ class Login extends React.Component {
       })
       .catch((err) => {
         this.setState({
-          formErr: "Error in form, please check values",
+          formErr: "Incorrect username or password, please re-enter",
         });
       });
   }
@@ -70,9 +70,10 @@ class Login extends React.Component {
             padding: "50px",
           }}
         >
-          <Card.Header>
-            <h2>Login</h2>
+          <Card.Header style={{fontWeight: "bolder", fontSize: "x-large"}}>
+            Welcome to diaryRepo <Icon.Journal></Icon.Journal>
           </Card.Header>
+          <Card.Title style={{marginTop: "10px"}}>Login</Card.Title>
           <Card.Body>
             <Form
               onSubmit={(e) => {
@@ -100,14 +101,22 @@ class Login extends React.Component {
                     this.handleInputChange(e);
                   }}
                 />
+                {this.state.formErr !== "" ? (
+                  <div className="form-group">
+                    <p style={{color: "red"}}>{this.state.formErr}</p>
+                  </div>
+                ) : (
+                  ""
+                )}
               </Form.Group>
-
               <Button block size="lg" type="submit">
                 Login
               </Button>
-              <Button href="/register" block size="lg">
-                Register
-              </Button>
+              Not a user yet? Click{" "}
+              <a href="/register" block size="lg">
+                here
+              </a>{" "}
+              to register
             </Form>
           </Card.Body>
         </Card>

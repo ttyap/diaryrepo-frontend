@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import qs from "qs";
 import "./Form.css";
+import {withCookies} from "react-cookie";
 
 import {Button, Form, Card, Container} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -25,10 +26,15 @@ class Diary extends React.Component {
 
     axios
       .post(
-        `http://localhost:5000/api/v1/user/register`,
+        `http://localhost:5000/api/v1/diaryentry`,
         qs.stringify({
           text: this.state.text,
-        })
+        }),
+        {
+          headers: {
+            token: this.props.cookies.get("token"),
+          },
+        }
       )
       .then((response) => {
         if (!response.data.success) {
@@ -95,4 +101,4 @@ class Diary extends React.Component {
   }
 }
 
-export default Diary;
+export default withCookies(Diary);
