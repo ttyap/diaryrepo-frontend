@@ -59,12 +59,15 @@ class Register extends React.Component {
         <Container>
           <Card
             style={{
+              margin: "0 auto",
+              float: "none",
+              marginBottom: "10px",
               marginTop: "20px",
               width: "430px",
               height: "100%",
               opacity: "95%",
               padding: "50px",
-            }}
+              }}
           >
             <Card.Header style={{fontWeight: "bolder", fontSize: "x-large"}}>
               Welcome to diaryRepo <Icon.Journal></Icon.Journal>
@@ -108,6 +111,14 @@ class Register extends React.Component {
                       this.handleInputChange(e);
                     }}
                   />
+                                  {this.state.formErr !== "" ? (
+                  <div className="form-group">
+                    <p style={{color: "red"}}>{this.state.formErr}</p>
+                  </div>
+                ) : (
+                  ""
+                )}
+
                 </Form.Group>
 
                 <Button block size="lg" type="submit">

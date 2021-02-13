@@ -7,6 +7,9 @@ import Dashboard from "./components/pages/Dashboard/Dashboard";
 import TodolistForm from "./components/pages/Dashboard/Todolist-form";
 import DiaryForm from "./components/pages/Dashboard/Diary-form";
 import MoodForm from "./components/pages/Dashboard/Mood-form";
+import ProtectedRoute from "./components/ProtectedRoute";
+import GuestRoute from "./components/GuestRoute";
+
 
 class App extends React.Component {
   render() {
@@ -14,13 +17,13 @@ class App extends React.Component {
       <div className="App">
         <Router>
           <Switch>
-            <Route path="/diary" component={DiaryForm} />
-            <Route path="/mood" component={MoodForm} />
+            <ProtectedRoute path="/diary" component={DiaryForm} />
+            <ProtectedRoute path="/mood" component={MoodForm} />
 
-            <Route path="/todolist" component={TodolistForm} />
-            <Route path="/register" component={Register} />
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/" component={Home} />
+            <ProtectedRoute path="/todolist" component={TodolistForm} />
+            <GuestRoute path="/register" component={Register} />
+            <ProtectedRoute path="/dashboard" component={Dashboard} />
+            <GuestRoute path="/" component={Home} />
           </Switch>
         </Router>
       </div>

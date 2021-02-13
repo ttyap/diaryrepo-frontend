@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import jwt from "jsonwebtoken";
 import qs from "qs";
 import moment from "moment";
 import * as Icon from "react-bootstrap-icons";
@@ -63,6 +62,9 @@ class Login extends React.Component {
       <div className="Login  ">
         <Card
           style={{
+            margin: "0 auto",
+            float: "none",
+            marginBottom: "10px",
             marginTop: "20px",
             width: "430px",
             height: "100%",

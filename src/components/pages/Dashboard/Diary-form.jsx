@@ -77,7 +77,7 @@ class Diary extends React.Component {
               >
                 <Form.Group size="lg" controlId="username">
                   <Form.Control
-                    placeholder="Describe your day.."
+                    placeholder="Describe your moment.."
                     as="textarea"
                     rows={10}
                     autoFocus

@@ -58,15 +58,18 @@ class MoodForm extends React.Component {
         <Container>
           <Card
             style={{
-              marginTop: "20px",
-              width: "100%",
+                margin: "0 auto",
+                float: "none",
+                marginBottom: "10px",
+                marginTop: "20px",
+                width: "100%",
               height: "100%",
               opacity: "95%",
               padding: "50px",
             }}
           >
             <Card.Header>
-              <h1>How are you feeling today?</h1>
+              <h1>How are you feeling right now?</h1>
             </Card.Header>
             <Card.Body>
               <Form
@@ -85,8 +88,8 @@ class MoodForm extends React.Component {
                       this.handleInputChange(e);
                     }}
                   />
-                  <Form.Check.Label style={{fontSize: "30px", verticalAlign: "middle"}}>
-                    ANGRY <Icon.EmojiAngry></Icon.EmojiAngry>
+                  <Form.Check.Label style={{fontSize: "30px"}}>
+                    Angry <Icon.EmojiAngry></Icon.EmojiAngry>
                   </Form.Check.Label>{" "}
                 </Form.Check>{" "}
                 <Form.Check>
@@ -102,7 +105,7 @@ class MoodForm extends React.Component {
                   />
 
                   <Form.Check.Label style={{fontSize: "30px"}}>
-                    SAD <Icon.EmojiFrown></Icon.EmojiFrown>{" "}
+                    Sad <Icon.EmojiFrown></Icon.EmojiFrown>{" "}
                   </Form.Check.Label>
                 </Form.Check>
                 <Form.Check>
@@ -118,7 +121,7 @@ class MoodForm extends React.Component {
                     }}
                   />
                   <Form.Check.Label style={{fontSize: "30px"}}>
-                    MEH <Icon.EmojiNeutral></Icon.EmojiNeutral>{" "}
+                    Meh <Icon.EmojiNeutral></Icon.EmojiNeutral>{" "}
                   </Form.Check.Label>
                 </Form.Check>
                 <Form.Check>
@@ -134,7 +137,7 @@ class MoodForm extends React.Component {
                     }}
                   />
                   <Form.Check.Label style={{fontSize: "30px"}}>
-                    GOOD <Icon.EmojiSmile></Icon.EmojiSmile>{" "}
+                    Good <Icon.EmojiSmile></Icon.EmojiSmile>{" "}
                   </Form.Check.Label>
                 </Form.Check>
                 <Form.Check>
@@ -150,7 +153,7 @@ class MoodForm extends React.Component {
                     }}
                   />
                   <Form.Check.Label style={{fontSize: "30px"}}>
-                    GREAT <Icon.EmojiLaughing></Icon.EmojiLaughing>{" "}
+                    Gr8 <Icon.EmojiLaughing></Icon.EmojiLaughing>{" "}
                   </Form.Check.Label>
                 </Form.Check>
                 <Form.Check>
@@ -166,7 +169,7 @@ class MoodForm extends React.Component {
                     }}
                   />
                   <Form.Check.Label style={{fontSize: "30px"}}>
-                    LOVED <Icon.EmojiHeartEyes></Icon.EmojiHeartEyes>{" "}
+                    Loved <Icon.EmojiHeartEyes></Icon.EmojiHeartEyes>{" "}
                   </Form.Check.Label>
                 </Form.Check>
                 <Button type="submit">Submit</Button>

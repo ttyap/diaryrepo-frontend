@@ -1,5 +1,5 @@
 import React from "react";
-import {VictoryPie, VictoryLabel} from "victory";
+import {VictoryPie} from "victory";
 import axios from "axios";
 import {withCookies} from "react-cookie";
 
@@ -8,6 +8,7 @@ class Mood extends React.Component {
     super(props);
     this.state = {
       moodList: [],
+      myColorScale:[]
     };
   }
 
@@ -31,32 +32,49 @@ class Mood extends React.Component {
   }
 
   render() {
+
+    this.state.myColorScale = this.state.moodList.map((result) => {
+      if (result._id === "Angry")
+        return "#845EC2"
+        else if (result._id === "Sad")
+        return "#D65DB1"
+        
+        else if (result._id === "Meh")
+        return "#FF6F91"
+
+        else if (result._id === "Good") 
+        return "#FF9671"
+        
+        else if (result._id === "Gr8")
+        return "#FFC75F"
+        else 
+        return "#F9F871"
+        
+    });
+    const data = this.state.moodList.map((result) => {
+      return {
+        x: result._id,
+        y: result.count,
+      };
+    });
+
     return (
-      <svg viewBox="0 0 700 700">
-        <VictoryPie
-          colorScale={["tomato", "orange", "gold", "violet", "navy", "teal"]}
-          standalone={false}
-          width={700}
-          height={700}
-          data={this.state.moodList.map((result) => {
-            return {
-              x: result._id,
-              y: result.count,
-              label: result._id,
-            };
-          })}
-          labelRadius={100}
-          style={{
-            labels: {
-              fontSize: 30,
-              fill: "white",
-              fontWeight: "bolder",
-              writingMode: "vertical-rl",
-              textOrientation: "upright",
-            },
-          }}
-        />
-      </svg>
+      <div className="mood">
+        {this.state.moodList.length !== 0 ? (      <div className="mood-content">
+
+<svg viewBox="0 0 500 500">
+  <VictoryPie
+  colorScale={this.state.myColorScale}
+    standalone={false}
+    width={450}
+    height={500}
+    data={(data)}
+    style={{labels: { fill: "black", fontSize: "20px", fontWeight:"bold"  }}}
+  />
+</svg>
+</div>
+): (<p>No mood found</p>)}
+      </div>
     );
   }
 }

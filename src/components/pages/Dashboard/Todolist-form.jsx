@@ -78,9 +78,11 @@ class TodolistForm extends React.Component {
                 <Form.Group size="lg" controlId="username">
                   <Form.Label>Task</Form.Label>
                   <Form.Control
+                                      placeholder="Please remember to.."
+
                     autoFocus
                     as="textarea"
-                    rows={10}
+                    rows={5}
                     type="text"
                     name="text"
                     onChange={(e) => {

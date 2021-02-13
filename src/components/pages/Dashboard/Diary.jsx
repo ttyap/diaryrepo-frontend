@@ -1,9 +1,10 @@
 import React from "react";
 import axios from "axios";
 import * as Icon from "react-bootstrap-icons";
+import Moment from "moment";
 
 import {withCookies} from "react-cookie";
-import {Container, Card, CardGroup} from "react-bootstrap";
+import {Container, Card, CardDeck} from "react-bootstrap";
 
 class Diary extends React.Component {
   constructor(props) {
@@ -20,8 +21,6 @@ class Diary extends React.Component {
         },
       })
       .then((response) => {
-        console.log(this.state.diary);
-        console.log(itemId);
         const newState = this.state.diary.filter(function (entry) {
           return entry._id !== itemId;
         });
@@ -59,32 +58,40 @@ class Diary extends React.Component {
         {this.state.diary.length !== 0 ? (
           <div className="diary-content">
             {this.state.diary.map((result) => {
-              console.log(result);
               return (
                 <div className="diary">
                   <Container>
-                    <CardGroup>
+                    <CardDeck>
                       {" "}
                       <Card
                         style={{
                           marginTop: "20px",
+                          width: "200px",
+                          marginBottom:"10px"
                         }}
                       >
                         {" "}
-                        <Card.Header
+                        <Card.Title
                           style={{
                             fontWeight: "bold",
+                            fontSize: "15px",
                             textAlign: "left",
+                            marginTop:"5px",
+
+                            marginLeft:"5px"
                           }}
                         >
-                          {result.created_at}
+                          {Moment(result.created_at).format("ddd Do MMM YYYY, HH:mm")}
                           <Icon.Trash
+                            style={{
+                              marginLeft: "20px",
+                            }}
                             onClick={(e) => this.handleDelete(e, result._id)}
                           ></Icon.Trash>
-                        </Card.Header>
-                        <Card.Text style={{textAlign: "left"}}>{result.text}</Card.Text>
+                        </Card.Title>
+                        <Card.Text style={{textAlign: "left", marginLeft:"5px"}}>{result.text}</Card.Text>
                       </Card>
-                    </CardGroup>
+                    </CardDeck>
                   </Container>
                 </div>
               );
