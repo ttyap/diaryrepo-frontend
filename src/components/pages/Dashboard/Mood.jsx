@@ -8,7 +8,8 @@ class Mood extends React.Component {
     super(props);
     this.state = {
       moodList: [],
-      myColorScale:[]
+      myColorScale: [],
+      mouseOver: false,
     };
   }
 
@@ -32,24 +33,13 @@ class Mood extends React.Component {
   }
 
   render() {
-
     this.state.myColorScale = this.state.moodList.map((result) => {
-      if (result._id === "Angry")
-        return "#845EC2"
-        else if (result._id === "Sad")
-        return "#D65DB1"
-        
-        else if (result._id === "Meh")
-        return "#FF6F91"
-
-        else if (result._id === "Good") 
-        return "#FF9671"
-        
-        else if (result._id === "Gr8")
-        return "#FFC75F"
-        else 
-        return "#F9F871"
-        
+      if (result._id === "Angry") return "#845EC2";
+      else if (result._id === "Sad") return "#D65DB1";
+      else if (result._id === "Meh") return "#FF6F91";
+      else if (result._id === "Good") return "#FF9671";
+      else if (result._id === "Gr8") return "#FFC75F";
+      else return "#F9F871";
     });
     const data = this.state.moodList.map((result) => {
       return {
@@ -60,20 +50,23 @@ class Mood extends React.Component {
 
     return (
       <div className="mood">
-        {this.state.moodList.length !== 0 ? (      <div className="mood-content">
-
-<svg viewBox="0 0 500 500">
-  <VictoryPie
-  colorScale={this.state.myColorScale}
-    standalone={false}
-    width={450}
-    height={500}
-    data={(data)}
-    style={{labels: { fill: "black", fontSize: "20px", fontWeight:"bold"  }}}
-  />
-</svg>
-</div>
-): (<p>No mood found</p>)}
+        {this.state.moodList.length !== 0 ? (
+          <div className="mood-content">
+            <svg className="vicPie" viewBox="0 0 500 500">
+              <VictoryPie
+                colorScale={this.state.myColorScale}
+                standalone={false}
+                width={500}
+                height={400}
+                data={data}
+                labels={({datum}) => `${datum.x}: ${datum.y}`}
+                style={{labels: {fill: "black", fontWeight: "bold", fontSize: "15px"}}}
+              />
+            </svg>
+          </div>
+        ) : (
+          <p>No mood found</p>
+        )}
       </div>
     );
   }

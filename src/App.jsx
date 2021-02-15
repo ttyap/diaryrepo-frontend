@@ -21,7 +21,7 @@ class App extends React.Component {
             <ProtectedRoute path="/mood" component={MoodForm} />
 
             <ProtectedRoute path="/todolist" component={TodolistForm} />
-            <GuestRoute path="/register" component={Register} />
+            <Route path="/register" component={Register} />
             <ProtectedRoute path="/dashboard" component={Dashboard} />
             <GuestRoute path="/" component={Home} />
           </Switch>

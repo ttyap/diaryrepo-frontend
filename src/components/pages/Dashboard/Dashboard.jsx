@@ -36,10 +36,9 @@ class Dashboard extends React.Component {
 
   handleLogout(e) {
     e.preventDefault();
-    this.props.cookies.remove("token", { path: "/" });
+    this.props.cookies.remove("token", {path: "/"});
     window.location.href = "/";
   }
-
 
   render() {
     return (
@@ -53,6 +52,7 @@ class Dashboard extends React.Component {
                   style={{
                     marginTop: "20px",
                     marginBottom: "20px",
+                    height:"250px",
                     width: "250px",
                     opacity: "95%",
                   }}
@@ -69,10 +69,9 @@ class Dashboard extends React.Component {
                   style={{
                     marginTop: "20px",
                     marginBottom: "20px",
+                    height:"250px",
                     width: "250px",
                     opacity: "95%",
-                    maxHeight: "500px",
-                    overflow: "auto",
 
                   }}
                 >
@@ -85,7 +84,10 @@ class Dashboard extends React.Component {
                       ></Icon.PlusCircle>{" "}
                     </a>
                   </Card.Header>
-                  <Card.Body>
+                  <Card.Body                   style={{
+                      overflow: "auto",
+                    }}
+>
                     <Todolist />
                   </Card.Body>
                 </Card>
@@ -93,8 +95,8 @@ class Dashboard extends React.Component {
                   style={{
                     marginTop: "20px",
                     marginBottom: "20px",
-                    maxHeight: "280px",
-                    width: "250px",
+                    height:"200px",
+                    width: "250px",                    
                     opacity: "95%",
                     overflow: "auto",
                   }}
@@ -114,8 +116,7 @@ class Dashboard extends React.Component {
                   style={{
                     marginTop: "20px",
                     marginBottom: "20px",
-                    height: "100vh",
-                    maxHeight: "750px",
+                    height: "740px",
                     opacity: "95%",
                     overflow: "auto",
                   }}
@@ -141,8 +142,8 @@ class Dashboard extends React.Component {
               {/* <Col sm={1}> */}
               <Button
                 variant="light"
-                onClick={(e) => {
-                  this.handleLogout(e);
+                onClick={() => {
+                  this.handleLogout();
                 }}
                 href="/"
                 style={{
