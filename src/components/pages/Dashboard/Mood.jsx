@@ -2,6 +2,9 @@ import React from "react";
 import {VictoryPie} from "victory";
 import axios from "axios";
 import {withCookies} from "react-cookie";
+import "./Mood.css";
+import {baseURL} from "../../services/api";
+
 
 class Mood extends React.Component {
   constructor(props) {
@@ -15,7 +18,7 @@ class Mood extends React.Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/api/v1/mood", {
+      .get(`${baseURL}/mood`, {
         headers: {
           token: this.props.cookies.get("token"),
         },
@@ -60,7 +63,7 @@ class Mood extends React.Component {
                 height={400}
                 data={data}
                 labels={({datum}) => `${datum.x}: ${datum.y}`}
-                style={{labels: {fill: "black", fontWeight: "bold", fontSize: "15px"}}}
+                style={{labels: {fill: "black", fontWeight: "bold", fontSize: "20px"}}}
               />
             </svg>
           </div>

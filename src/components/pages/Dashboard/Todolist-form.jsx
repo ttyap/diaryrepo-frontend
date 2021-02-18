@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import qs from "qs";
+import {baseURL} from "../../services/api";
+
 import "./Form.css";
 import {withCookies} from "react-cookie";
 
@@ -26,7 +28,7 @@ class TodolistForm extends React.Component {
 
     axios
       .post(
-        `http://localhost:5000/api/v1/todolist`,
+        `${baseURL}/todolist`,
         qs.stringify({
           text: this.state.text,
         }),

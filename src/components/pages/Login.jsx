@@ -70,6 +70,7 @@ class Login extends React.Component {
             height: "100%",
             opacity: "95%",
             padding: "50px",
+            backgroundColor:""
           }}
         >
           <Card.Header style={{fontWeight: "bolder", fontSize: "x-large"}}>

@@ -7,6 +7,8 @@ import Todolist from "./Todolist";
 import Quotes from "./Quotes";
 import * as Icon from "react-bootstrap-icons";
 import {Card, Container, Row, Col, Button} from "react-bootstrap";
+import {baseURL} from "../../services/api";
+
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -18,7 +20,7 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/api/v1/user/me", {
+      .get(`${baseURL}/user/me`, {
         headers: {
           token: this.props.cookies.get("token"),
         },

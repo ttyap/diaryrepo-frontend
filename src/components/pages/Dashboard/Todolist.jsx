@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import qs from "qs";
 import * as Icon from "react-bootstrap-icons";
+import {baseURL} from "../../services/api";
 
 import "./Todolist.css";
 
@@ -17,7 +18,7 @@ class Todolist extends React.Component {
 
   handleDelete = (e, itemId) => {
     axios
-      .delete(`http://localhost:5000/api/v1/todolist/${itemId}`, {
+      .delete(`${baseURL}/todolist/${itemId}`, {
         headers: {
           token: this.props.cookies.get("token"),
         },
@@ -37,7 +38,7 @@ class Todolist extends React.Component {
     if (e.target.className === "strikeThrough") return;
     e.target.classList.toggle("strikeThrough");
     axios.patch(
-      `http://localhost:5000/api/v1/todolist/${itemId}`,
+      `${baseURL}/todolist/${itemId}`,
       qs.stringify({
         task_status: "done",
       }),
@@ -51,14 +52,13 @@ class Todolist extends React.Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/api/v1/todolist", {
+      .get(`${baseURL}/todolist`, {
         headers: {
           token: this.props.cookies.get("token"),
         },
       })
 
       .then((response) => {
-        console.log(response.data.text);
         this.setState({
           todolist: response.data.text,
         });

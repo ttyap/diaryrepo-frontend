@@ -1,0 +1,7 @@
+.vicPie:hover {
+    transform: scale(1.25);
+}
+
+.vicPie {
+    transition: all 0.5s;
+  }

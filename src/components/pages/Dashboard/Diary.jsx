@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import * as Icon from "react-bootstrap-icons";
 import Moment from "moment";
+import {baseURL} from "../../services/api";
 
 import {withCookies} from "react-cookie";
 import {Container, Card, CardDeck} from "react-bootstrap";
@@ -15,7 +16,7 @@ class Diary extends React.Component {
   }
   handleDelete = (e, itemId) => {
     axios
-      .delete(`http://localhost:5000/api/v1/diaryentry/${itemId}`, {
+      .delete(`${baseURL}/diaryentry/${itemId}`, {
         headers: {
           token: this.props.cookies.get("token"),
         },
@@ -35,7 +36,7 @@ class Diary extends React.Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/api/v1/diaryentry", {
+      .get(`${baseURL}/diaryentry`, {
         headers: {
           token: this.props.cookies.get("token"),
         },

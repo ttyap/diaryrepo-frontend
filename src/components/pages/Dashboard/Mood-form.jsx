@@ -4,6 +4,8 @@ import * as Icon from "react-bootstrap-icons";
 import "./Form.css";
 import axios from "axios";
 import qs from "qs";
+import {baseURL} from "../../services/api";
+
 import FormCheckInput from "react-bootstrap/esm/FormCheckInput";
 import {withCookies} from "react-cookie";
 
@@ -22,10 +24,9 @@ class MoodForm extends React.Component {
 
   handleFormSubmission(e) {
     e.preventDefault();
-    console.log(this.props.cookies.get("token"));
     axios
       .post(
-        `http://localhost:5000/api/v1/mood`,
+        `${baseURL}/mood`,
         qs.stringify({
           mood: this.state.mood,
         }),
