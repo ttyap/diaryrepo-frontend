@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import * as Icon from "react-bootstrap-icons";
 import Moment from "moment";
-import {baseURL} from "../../services/api";
+import {baseURL} from "../../../services/api";
 
 import {withCookies} from "react-cookie";
 import {Container, Card, CardDeck} from "react-bootstrap";

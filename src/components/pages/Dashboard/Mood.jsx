@@ -3,7 +3,7 @@ import {VictoryPie} from "victory";
 import axios from "axios";
 import {withCookies} from "react-cookie";
 import "./Mood.css";
-import {baseURL} from "../../services/api";
+import {baseURL} from "../../../services/api";
 
 
 class Mood extends React.Component {

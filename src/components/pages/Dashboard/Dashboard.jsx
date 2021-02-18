@@ -7,7 +7,7 @@ import Todolist from "./Todolist";
 import Quotes from "./Quotes";
 import * as Icon from "react-bootstrap-icons";
 import {Card, Container, Row, Col, Button} from "react-bootstrap";
-import {baseURL} from "../../services/api";
+import {baseURL} from "../../../services/api";
 
 
 class Dashboard extends React.Component {

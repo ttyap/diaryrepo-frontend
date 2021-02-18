@@ -4,7 +4,7 @@ import * as Icon from "react-bootstrap-icons";
 import "./Form.css";
 import axios from "axios";
 import qs from "qs";
-import {baseURL} from "../../services/api";
+import {baseURL} from "../../../services/api";
 
 import FormCheckInput from "react-bootstrap/esm/FormCheckInput";
 import {withCookies} from "react-cookie";
